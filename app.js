@@ -1,47 +1,47 @@
-const close = document.getElementsByClassName("close");
-const done = document.getElementsByClassName("done");
+const close = document.querySelectorAll(".close");
+const done = document.querySelectorAll(".done");
 
 function newTask() {
-    let li = document.createElement("li");
     const inputValue = document.querySelector("#inputTask").value;
+    if (inputValue === '') {
+        alert("You didn't type anything");
+    }
 
-    let newLi = document.createTextNode(inputValue);
+    else {
+        const li = createTaskElement(inputValue);
+        const closeButton = createButtonElement("close", "\u274C", deleteTask);
+        const doneButton = createButtonElement("done", "\u2714\uFE0F", markTaskAsDone);
+
+        li.appendChild(closeButton);
+        li.appendChild(doneButton);
+
+        document.querySelector("#tasks").appendChild(li);
+        document.querySelector("#inputTask").value = "";
+    }
+}
+
+function createTaskElement(text) {
+    const li = document.createElement("li");
+    const newLi = document.createTextNode(text);
     li.appendChild(newLi);
+    return li;
+}
 
-    inputValue === '' ? alert("You didn't type anything") : document.querySelector("#tasks").appendChild(li);
-    document.querySelector("#inputTask").value = "";
+function createButtonElement(className, text, callback) {
+    const span = document.createElement("span");
+    span.className = className;
+    const button = document.createTextNode(text);
+    span.appendChild(button);
+    span.addEventListener("click", callback);
+    return span;
+}
 
-    for (let i = 0; i < 2; i++) {
+function deleteTask() {
+    const div = this.parentElement;
+    div.style.display = "none";
+}
 
-        if (i === 1) {
-            let span = document.createElement("span");
-            span.className = "close";
-            let text = document.createTextNode("\u274C");
-
-            span.appendChild(text);
-            li.appendChild(span);
-        }
-        else {
-            let span = document.createElement("span");
-            span.className = "done";
-            let text = document.createTextNode("\u2714\uFE0F");
-
-            span.appendChild(text);
-            li.appendChild(span);
-        }
-    }
-
-    for (let i = 0; i < close.length; i++) {
-        close[i].onclick = function() {
-          let div = this.parentElement;
-          div.style.display = "none";
-        }
-    }
-
-    for (let i = 0; i < done.length; i++) {
-        done[i].onclick = function() {
-          let div = this.parentElement;
-          div.style.backgroundColor = "#FFFA00";
-        }
-    }
+function markTaskAsDone() {
+    const div = this.parentElement;
+    div.style.backgroundColor = "#BEBEBE";
 }
