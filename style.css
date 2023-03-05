@@ -25,11 +25,23 @@ ul li:hover {
 .close {
     position: absolute;
     right: 0;
-    top:0;
-    padding: 12px 16px 12px 16px;
+    top: 0;
+    padding: 10px;
 }
 
 .close:hover {
-    background-color: #f44336;
+    background-color: whitesmoke;
+    color: white;
+}
+
+.done {
+    position: absolute;
+    right: 40px;
+    top: 0;
+    padding: 10px;
+}
+
+.done:hover {
+    background-color: whitesmoke;
     color: white;
 }

@@ -10,15 +10,16 @@
 <body>
     <div class="header">
         <h1>To Do List</h1>
-        <input type="text" id="inputTitle" name="title" placeholder="Digite...">
-        <button onclick="newTitle()" class="addBtn">Add</button>
+        <input type="text" id="inputTask" name="task" placeholder="type it...">
+        <button onclick="newTask()" class="addBtn">Add</button>
     </div>
     
     <div>
-        <ul id="titles">
-            <li>teste <span class="close">×</span></li>
-            <li>teste2</li>
-            <li>teste3</li>
+        <ul id="tasks">
+            <li> Example 
+                <span class="close">❌</span>
+                <span class="done">✔️</span>
+            </li>
         </ul>
     </div>
 
