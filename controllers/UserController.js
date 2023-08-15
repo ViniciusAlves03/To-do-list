@@ -74,18 +74,18 @@ module.exports = class UserController {
         let currentUser
 
         if (req.headers.authorization) {
-          const token = getToken(req)
-          const decoded = jwt.verify(token, 'usersecret')
+            const token = getToken(req)
+            const decoded = jwt.verify(token, 'usersecret')
 
-          currentUser = await User.findById(decoded.id)
+            currentUser = await User.findById(decoded.id)
 
-          currentUser.password = undefined
+            currentUser.password = undefined
         } else {
-          currentUser = null
+            currentUser = null
         }
 
         res.status(200).send(currentUser)
-      }
+    }
 
     static async getUserById(req, res) {
         const id = req.params.id

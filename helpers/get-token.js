@@ -2,7 +2,7 @@ const getToken = (req) => {
     const authHeader = req.headers.authorization;
 
     if (!authHeader) {
-        throw new Error("Autorização inexistente!");
+        res.status(422).json({ message: "Autorização inexistente!" });
     }
 
     const token = authHeader.split(" ")[1];

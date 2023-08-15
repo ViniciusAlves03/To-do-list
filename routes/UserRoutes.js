@@ -2,7 +2,7 @@ const express = require('express');
 const UserController = require('../controllers/UserController');
 
 const verifyToken = require('../helpers/verify-token');
-const {imageUpload} = require('../helpers/image-upload');
+const { imageUpload } = require('../helpers/image-upload');
 
 const router = express.Router()
 
