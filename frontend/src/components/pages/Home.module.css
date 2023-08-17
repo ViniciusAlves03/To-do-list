@@ -1,0 +1,12 @@
+.home {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70vh;
+}
+
+.home h1 {
+    color: black;
+    text-align: center;
+    font-size: 35px;
+}
