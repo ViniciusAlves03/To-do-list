@@ -4,7 +4,7 @@
     background-color: #fff;
 }
 
-.form_container h1 {
+.form_container h1, .form_container p {
     text-align: center;
 }
 

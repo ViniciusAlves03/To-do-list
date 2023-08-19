@@ -2,6 +2,8 @@ import api from '../../../utils/api'
 
 import { useState, useEffect } from 'react'
 
+import { Link } from 'react-router-dom'
+
 import styles from './MyTasks.module.css'
 
 import useFlashMessage from '../../../hooks/useFlashMessage'
@@ -23,10 +25,63 @@ function MyTasks() {
             })
     }, [token])
 
+    async function removeTask(id) {
+        let msgType = 'success'
+
+        const data = await api.delete(`/task/remove/${id}`, {
+            headers: {
+                Authorization: `Bearer ${JSON.parse(token)}`
+            }
+        })
+            .then((response) => {
+                const updateTask = tasks.filter((task) => task._id !== id)
+                setTasks(updateTask)
+                return response.data
+            })
+            .catch((error) => {
+                msgType = 'error'
+                return error.response.data
+            })
+
+        setFlashMessage(data.message, msgType)
+    }
+
+    async function concludeTask(id) {
+
+        let msgType = 'sucess'
+
+        const data = api.patch(`/task/conclude/${id}`, {
+            headers: {
+                Authorization: `Bearer ${JSON.parse(token)}`
+            }
+        })
+            .then((response) => {
+                return response.data
+            })
+
+            .catch((error) => {
+                msgType = 'error'
+                return error.response.data
+            })
+
+        setFlashMessage(data.message, msgType)
+    }
+
     return (
         <section>
             <div className={styles.tasks_header}>
                 <h1>Minhas Tarefas!</h1>
+                <ul>
+                    <li>
+                        <Link to={'/task/create'}>Criar Tarefa</Link>
+                    </li>
+                    <li>
+                        <Link to={'/task/mytasksdone'}>Tarefas Concluídas</Link>
+                    </li>
+                    <li>
+                        <Link to={'/task/mytasksnotdone'}>Tarefas Restantes</Link>
+                    </li>
+                </ul>
             </div>
             <div className={styles.tasks_container}>
                 {tasks.length > 0 && (
@@ -36,20 +91,22 @@ function MyTasks() {
                                 <div className={styles.tasks_title}>
                                     <h1>{task.name}</h1>
                                 </div>
-                                {task.description ? (<>
-                                    <h4>{task.description}</h4>
-                                </>)
-                                    : <>
-                                        <h4>Essa tarefa não tem descrição!</h4>
-                                    </>}
+                                <h4>{task.description}</h4>
                                 <div className={styles.tasks_actions}>
                                     {task.done ? (<>
                                         <button className={styles.task_done_true}>Concluída</button>
-                                        <button className={styles.task_remove}>Remover</button>
+                                        <button onClick={() => {
+                                            removeTask(task._id)
+                                        }} className={styles.task_remove}>Remover</button>
                                     </>)
                                         : <>
-                                            <button className={styles.task_done_false}>Concluir</button>
-                                            <button className={styles.task_remove}>Remover</button>
+                                            <Link to={'task/edit'}><button className={styles.task_edit}>Alterar</button></Link>
+                                            <button onClick={() => {
+                                                concludeTask(task._id)
+                                            }} className={styles.task_done_false}>Concluir</button>
+                                            <button onClick={() => {
+                                                removeTask(task._id)
+                                            }} className={styles.task_remove}>Remover</button>
                                         </>}
                                 </div>
                             </div>

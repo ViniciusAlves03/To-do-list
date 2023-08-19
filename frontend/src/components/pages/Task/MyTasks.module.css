@@ -3,6 +3,33 @@
     flex-wrap: wrap;
 }
 
+.tasks_header ul {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.tasks_header li,
+.tasks_header a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    padding: 0.3em 0.9em;
+    border-radius: 8px;
+    margin: 0.2em;
+}
+
+.tasks_header a {
+    border: 1px solid #16479d;
+    background-color: rgb(162, 83, 237);
+}
+
 .tasks_card {
     border: 1px solid #16479d;
     margin: 1em 1em 1em 0;
@@ -43,6 +70,16 @@
     font-size: 12px;
 }
 
+.task_edit {
+    background-color: #00bdff;
+    border: 2px solid #00bdff;
+}
+
+.task_edit:hover {
+    background-color: #0093ff;
+    border: 2px solid #0093ff;
+}
+
 .task_remove {
     background-color: rgb(212, 28, 28);
     border: 2px solid rgb(212, 28, 28);
@@ -52,7 +89,6 @@
 .task_remove:hover {
     background-color: rgb(195, 1, 1);
     border: 2px solid rgb(195, 1, 1);
-    border-radius: 0 0 5px 0;
 }
 
 .task_done_false {
@@ -60,7 +96,8 @@
     border: 2px solid #25b456;
 }
 
-.task_done_false:hover, .task_done_true {
+.task_done_false:hover,
+.task_done_true {
     background-color: #1c8a42;
     border: 2px solid #1c8a42;
 }
@@ -68,6 +105,19 @@
 @media screen and (max-width: 700px) {
     .tasks_header h1 {
         text-align: center;
+    }
+
+    .tasks_header ul {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        text-align: left;
+    }
+
+    .tasks_header li,
+    .tasks_header a {
+        padding: 0.5em 0.5em;
+        margin: 0.5em 0;
     }
 
     .tasks_container {

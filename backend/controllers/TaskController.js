@@ -7,34 +7,39 @@ const ObjectId = require('mongoose').Types.ObjectId
 
 module.exports = class TaskController {
     static async create(req, res) {
+        const { name, description } = req.body;
+        const done = false;
 
-        const { name, description } = req.body
+        if (!name) {
+            return sendError(res, "O nome é obrigatório!");
+        }
 
-        const done = false
+        let updatedDescription = description;
 
-        if (!name) { return sendError(res, "O nome é obrigatório!") }
+        if (!description) {
+            updatedDescription = 'Essa tarefa não tem descrição!';
+        }
 
-        const token = getToken(req)
-        const user = await getUserByToken(token)
+        const token = getToken(req);
+        const user = await getUserByToken(token);
 
         const task = new Task({
             name,
-            description,
+            description: updatedDescription,
             done,
             user: {
                 _id: user.id,
                 name: user.name,
                 image: user.image,
                 phone: user.phone,
-            }
-        })
+            },
+        });
 
         try {
-            const newTask = await task.save()
-
-            res.status(200).json({ message: "A tarefa foi criada!", newTask })
+            const newTask = await task.save();
+            res.status(200).json({ message: "A tarefa foi criada!", newTask });
         } catch (error) {
-            res.status(500).json({ message: "Não foi possível criar a tarefa!" })
+            res.status(500).json({ message: "Não foi possível criar a tarefa!" });
         }
     }
 
@@ -104,8 +109,7 @@ module.exports = class TaskController {
         }
 
         if (!name) { return sendError(res, "O nome é obrigatório!") } else { updateData.name = name }
-
-        updateData.description = description
+        if (!description) { updateData.description = 'Essa tarefa não tem descrição!' } else { updateData.description = description }
 
         await Task.findByIdAndUpdate(id, updateData)
 

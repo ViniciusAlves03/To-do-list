@@ -11,6 +11,7 @@ import Home from './components/pages/Home';
 import Profile from './components/pages/User/Profile'
 import { UserProvider } from './context/UserContext';
 import MyTasks from './components/pages/Task/MyTasks';
+import AddTask from './components/pages/Task/AddTask';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
             <Route path='/login' element={<Login />}></Route>
             <Route path='/register' element={<Register />}></Route>
             <Route path='/user/profile' element={<Profile />} />
+            <Route path='/task/create' element={<AddTask />} />
             <Route path='/task/mytasks' element={<MyTasks />} />
             <Route path='/' element={<Home />} />
           </Routes>
