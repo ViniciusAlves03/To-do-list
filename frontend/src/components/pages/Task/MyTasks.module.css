@@ -30,6 +30,11 @@
     background-color: rgb(162, 83, 237);
 }
 
+.tasks_header a:hover {
+    color: black;
+    background-color: #f0d06e;
+}
+
 .tasks_card {
     border: 1px solid #16479d;
     margin: 1em 1em 1em 0;
@@ -58,11 +63,11 @@
 
 .tasks_actions {
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
 }
 
 .tasks_actions button {
-    color: #16479d;
+    color: #fff;
     padding: 7px 12px;
     text-decoration: none;
     cursor: pointer;
@@ -139,5 +144,78 @@
     .tasks_actions button {
         padding: 5px 10px;
         font-size: 10px;
+    }
+}
+
+@media screen and (max-width: 810px) {
+    .tasks_actions button {
+        padding: 5px 9px;
+        font-size: 10px;
+    }
+}
+
+@media screen and (max-width: 699px) {
+    .tasks_header h1 {
+        text-align: center;
+    }
+
+    .tasks_header ul {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        text-align: left;
+        font-size: 10px;
+    }
+
+    .tasks_header li,
+    .tasks_header a {
+        padding: 0.8em 1em;
+        margin: 0;
+    }
+
+    .tasks_container {
+        flex-direction: column;
+    }
+
+    .tasks_card {
+        width: 100%;
+    }
+
+    .tasks_card h4 {
+        font-size: 11px;
+    }
+
+    .tasks_title h1 {
+        font-size: 16px;
+    }
+
+    .tasks_actions button {
+        padding: 5px 10px;
+        font-size: 10px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .tasks_header h1 {
+        text-align: center;
+    }
+
+    .tasks_header ul {
+        flex-direction: column;
+        text-align: left;
+    }
+
+    .tasks_header li,
+    .tasks_header a {
+        padding: 0.5em 0.5em;
+        margin: 0.5em 0;
+    }
+
+    .tasks_container {
+        flex-direction: column;
+    }
+
+    .tasks_card {
+        width: 100%;
     }
 }

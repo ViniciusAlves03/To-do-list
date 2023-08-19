@@ -1,10 +1,10 @@
 .form_container {
     max-width: 300px;
     margin: 0 auto;
-    background-color: #fff;
+    background-color: #e2e2e2;
 }
 
-.form_container h1, .form_container p {
+.form_container h1, .form_container h1 {
     text-align: center;
 }
 

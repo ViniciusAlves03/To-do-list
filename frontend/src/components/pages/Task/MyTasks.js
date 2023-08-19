@@ -21,7 +21,6 @@ function MyTasks() {
         })
             .then((response) => {
                 setTasks(response.data.tasks)
-                console.log(tasks)
             })
     }, [token])
 
@@ -100,7 +99,7 @@ function MyTasks() {
                                         }} className={styles.task_remove}>Remover</button>
                                     </>)
                                         : <>
-                                            <Link to={'task/edit'}><button className={styles.task_edit}>Alterar</button></Link>
+                                            <Link to={`/task/edit/${task._id}`}><button className={styles.task_edit}>Alterar</button></Link>
                                             <button onClick={() => {
                                                 concludeTask(task._id)
                                             }} className={styles.task_done_false}>Concluir</button>

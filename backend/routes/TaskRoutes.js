@@ -10,7 +10,8 @@ router.post('/create', verifyToken, imageUpload.single("image"), TaskController.
 router.get('/mytasks', verifyToken, TaskController.getAllUserTasks)
 router.get('/mytasksdone', verifyToken, TaskController.getAllUserTasksDone)
 router.get('/mytasksnotdone', verifyToken, TaskController.pickUpAllMissingTasks)
-router.patch('/edit/:id', verifyToken, TaskController.updateTask)
+router.get('/:id', verifyToken, TaskController.getTaskById)
+router.patch('/edit/:id', verifyToken, imageUpload.single("image"), TaskController.updateTask)
 router.delete('/remove/:id', verifyToken, TaskController.removeTask)
 router.patch('/conclude/:id', verifyToken, TaskController.concludeTask)
 

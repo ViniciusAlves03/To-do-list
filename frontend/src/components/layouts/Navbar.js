@@ -13,14 +13,14 @@ function Navbar() {
     return (
         <nav className={styles.navbar}>
             <div>
-
                 <h2>To-do list</h2>
             </div>
             <ul>
                 {authenticated ? (
                     <>
+                        <li><Link to='/task/mytasks'>Minhas Tarefas</Link></li>
                         <li><Link to='/user/profile'>Perfil</Link></li>
-                        <li onClick={logout}>Sair</li>
+                        <li className={styles.navbar_logout}onClick={logout}>Sair</li>
                     </>
                 ) : (
                     <>

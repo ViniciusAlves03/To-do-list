@@ -12,6 +12,9 @@ import Profile from './components/pages/User/Profile'
 import { UserProvider } from './context/UserContext';
 import MyTasks from './components/pages/Task/MyTasks';
 import AddTask from './components/pages/Task/AddTask';
+import MyTasksDone from './components/pages/Task/MyTasksDone';
+import MyTasksNotDone from './components/pages/Task/MyTasksNotDone';
+import EditTask from './components/pages/Task/EditTask';
 
 function App() {
   return (
@@ -26,6 +29,9 @@ function App() {
             <Route path='/user/profile' element={<Profile />} />
             <Route path='/task/create' element={<AddTask />} />
             <Route path='/task/mytasks' element={<MyTasks />} />
+            <Route path='/task/mytasksdone' element={<MyTasksDone />} />
+            <Route path='/task/mytasksnotdone' element={<MyTasksNotDone />} />
+            <Route path='/task/edit/:id' element={<EditTask />} />
             <Route path='/' element={<Home />} />
           </Routes>
         </Container>

@@ -89,6 +89,18 @@ module.exports = class TaskController {
         res.status(200).json({ tasks })
     }
 
+    static async getTaskById(req, res) {
+        const id = req.params.id
+
+        if (!ObjectId.isValid(id)) { return sendError(res, 'ID inválido') }
+
+        const task = await Task.findOne({ _id: id })
+
+        if (!task) { return sendSearchError(res, 'task não encontrada!') }
+
+        res.status(200).json({ task: task })
+    }
+
     static async updateTask(req, res) {
 
         const id = req.params.id
@@ -171,6 +183,6 @@ async function sendError(res, message) {
 }
 
 async function sendSearchError(res, message) {
-    res.status(422).json({ message })
+    res.status(404).json({ message })
 }
 
